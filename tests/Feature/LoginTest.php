@@ -5,7 +5,7 @@ use App\Models\User;
 
 test('invalid credentials should return Unauthorized response', function() {
     $this->post(
-        route('login', absolute: true),
+        route('api.login', absolute: true),
         [
             'email' => 'test@email.com',
             'password' => 'test123'
@@ -22,7 +22,7 @@ test('valid credentails should return authetication token informations', functio
     ]);
 
     $this->post(
-        route('login', absolute: true),
+        route('api.login', absolute: true),
         [
             'email' => 'admin@admin.com',
             'password' => 'password'
