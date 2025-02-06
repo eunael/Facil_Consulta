@@ -11,6 +11,10 @@
 |
 */
 
+use App\Models\User;
+
+use function Pest\Laravel\post;
+
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
@@ -41,7 +45,30 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Generate a token to login
+ *
+ * @return string
+ */
+function getToken(): string
 {
-    // ..
+    User::firstOrCreate(
+        [
+            'email' => 'admin@admin.com',
+        ],
+        [
+            'name' => fake()->name,
+            'password' => 'password'
+        ]
+    );
+
+    $response = post(
+        route('api.login', absolute: true),
+        [
+            'email' => 'admin@admin.com',
+            'password' => 'password'
+        ]
+    );
+
+    return $response['access_token'];
 }

@@ -17,14 +17,7 @@ it('should return autheticated user', function() {
         'password' => 'password'
     ]);
 
-    $response = $this->post(
-        route('api.login', absolute: true),
-        [
-            'email' => 'admin@admin.com',
-            'password' => 'password'
-        ]
-    );
-    $token = $response['access_token'];
+    $token = getToken();
 
     $this->withHeaders([
         'Authorization' => 'Bearer ' . $token

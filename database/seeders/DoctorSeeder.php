@@ -21,5 +21,6 @@ class DoctorSeeder extends Seeder
                 ['name' => ucfirst(fake()->name) . 'líl ' . ucfirst(fake()->name)],
             )
             ->create();
+        Doctor::factory(4)->create(['city_id' => 1]);
     }
 }

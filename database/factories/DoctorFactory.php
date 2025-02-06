@@ -20,7 +20,8 @@ class DoctorFactory extends Factory
         return [
             'name' => fake()->name,
             'specialty' => ucfirst(fake()->word),
-            'city_id' => City::factory()
+            'city_id' => City::factory(),
+            'deleted_at' => null
         ];
     }
 }

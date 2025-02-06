@@ -13,6 +13,10 @@ Route::get('/user', UserController::class)->name('api.user');
 Route::get('/cidades', [CityController::class, 'cities'])->name('api.cities');
 Route::get('/medicos', [DoctorController::class, 'doctors'])->name('api.doctors');
 
+Route::middleware([ApiValidateToken::class])->group(function() {
+    Route::get('/cidades/{id_cidade}/medicos', [CityController::class, 'doctorsFromCity'])->name('api.cities.doctors');
+});
+
 
 
 Route::get('/test', fn() => response()->json(['test' => 'test']))->name('api.test')->middleware(ApiValidateToken::class);

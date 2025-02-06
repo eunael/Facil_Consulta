@@ -19,7 +19,8 @@ class CityFactory extends Factory
         $city = fake()->city;
         return [
             'name' => $city,
-            'state' => strtoupper(substr($city, 0, 2))
+            'state' => strtoupper(substr($city, 0, 2)),
+            'deleted_at' => null
         ];
     }
 }
