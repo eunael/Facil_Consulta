@@ -13,8 +13,8 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        City::factory(20)->create();
-        City::factory(30)
+        City::factory(15)->create();
+        City::factory(15)
             ->sequence(
                 ['name' => 'São ' . ucfirst(fake()->word)],
                 ['name' => ucfirst(fake()->word) . 'são ' . ucfirst(fake()->word)],

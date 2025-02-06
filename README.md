@@ -12,12 +12,12 @@
     - [x] Criar middleware para validar o token
 - [ ] Criar Models, Migrations, Seeders e Factories
     - [x] Cities
-    - [ ] Doctors
+    - [x] Doctors
     - [ ] Patients
     - [ ] Consultations
 - [ ] Criar rotas
     - [x] GET /cities?name=
-    - [ ] GET /medicos?name=
+    - [x] GET /medicos?name=
     - [ ] GET /cidades/{id_cidade}/medicos?name=
     - [ ] POST AUTH /pacientes
     - [ ] POST AUTH /pacientes/{id_paciente}
