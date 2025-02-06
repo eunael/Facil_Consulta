@@ -29,7 +29,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Support/removeAccents.php"
+            "app/Support/removeAccents.php",
+            "app/Support/removeDrDra.php"
         ]
     },
     "autoload-dev": {

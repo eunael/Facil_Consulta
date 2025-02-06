@@ -31,7 +31,7 @@ class CityController extends Controller
 
     public function doctorsFromCity(int $id_cidade)
     {
-        $nameToSearch = mb_strtolower(request()->query('nome'));
+        $nameToSearch = removeDrDra(mb_strtolower(request()->query('nome')));
 
         $doctorsFromCity = Doctor::query()
             ->where('city_id', $id_cidade)

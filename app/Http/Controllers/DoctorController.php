@@ -9,7 +9,7 @@ class DoctorController extends Controller
 {
     public function doctors()
     {
-        $nameToSearch = mb_strtolower(request()->query('nome'));
+        $nameToSearch = removeDrDra(mb_strtolower(request()->query('nome')));
 
         $doctors = Doctor::query()
             ->when(
