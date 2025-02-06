@@ -11,7 +11,18 @@
     - [x] Criar rota /user
     - [x] Criar middleware para validar o token
 - [ ] Criar Models, Migrations, Seeders e Factories
+    - [x] Cities
+    - [ ] Doctors
+    - [ ] Patients
+    - [ ] Consultations
 - [ ] Criar rotas
+    - [x] GET /cities?name=
+    - [ ] GET /medicos?name=
+    - [ ] GET /cidades/{id_cidade}/medicos?name=
+    - [ ] POST AUTH /pacientes
+    - [ ] POST AUTH /pacientes/{id_paciente}
+    - [ ] POST AUTH /medicos/consulta
+    - [ ] GET AUTH /medicos/{id_medico}/pacientes?apenas-agendadas=&name=
 - [ ] Criar controler (--invokable)
 
 # Comandos
@@ -22,6 +33,6 @@ artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvide
 
 artisan jwt:secret
 
-artisan db:seed
+artisan migrate --seed
 
 artisan test
