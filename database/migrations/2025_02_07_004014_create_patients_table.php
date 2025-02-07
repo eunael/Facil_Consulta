@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('cpf');
             $table->string('cell');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
