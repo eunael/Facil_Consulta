@@ -3,7 +3,7 @@ namespace Tests\Feature;
 
 use App\Models\Patient;
 
-it('should create a new patients', function () {
+it('should create a new patient', function () {
     $patient = Patient::factory()->make();
     $this->post(route('api.patients.create', absolute: true), ['nome' => $patient->name, 'cpf' => $patient->cpf, 'celular' => $patient->cell])
         ->assertUnauthorized()
@@ -30,7 +30,7 @@ it('should create a new patients', function () {
     ]);
 });
 
-it('should edit a patients', function () {
+it('should edit a patient', function () {
     $patientMock = Patient::factory()->make();
     $patient = Patient::factory()->create();
     $this->put(route('api.patients.update', ['id_paciente' => $patient->id], true), ['nome' => $patientMock->name, 'cpf' => $patientMock->cpf, 'celular' => $patientMock->cell])
