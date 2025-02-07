@@ -63,21 +63,18 @@ it('should search doctors by name', function () {
 
 it('should create a new doctor', function () {
     $city = City::factory()->create();
+    $doctor = Doctor::factory()->make();
 
-    $this->post(route('api.doctors.create', absolute: true), ['nome' => fake()->name,'especialidade' => fake()->word,'cidade_id' => $city->id])
+    $this->post(route('api.doctors.create', absolute: true), ['nome' => $doctor->name,'especialidade' => $doctor->specialty,'cidade_id' => $doctor->city_id])
         ->assertUnauthorized()
         ->assertJson(['error' => 'Authorization token is not found']);
 
     $token = getToken();
 
-    $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+    $this->withHeaders(['Authorization' => 'Bearer ' . $token])
         ->post(
             route('api.doctors.create', absolute: true),
-            [
-                'nome' => fake()->name,
-                'especialidade' => fake()->word,
-                'cidade_id' => $city->id
-            ]
+            ['nome' => $doctor->name,'especialidade' => $doctor->specialty,'cidade_id' => $doctor->city_id]
         )
             ->assertOk()
             ->assertJsonStructure([
