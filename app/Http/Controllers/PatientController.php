@@ -7,27 +7,6 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    public function patients()
-    {
-        $nameToSearch = removeDrDra(mb_strtolower(request()->query('nome')));
-
-        $patients = Patient::query()
-            ->when(
-                $nameToSearch !== null,
-                function($q) use ($nameToSearch) {
-                    return $q->cursor()
-                        ->filter(
-                            fn($patient) =>
-                                str_contains(removeAccents(mb_strtolower($patient->name)), $nameToSearch)
-                        );
-                }
-            )
-            ->values()
-            ->toArray();
-
-        return response()->json($patients);
-    }
-
     public function create(Request $request)
     {
         $data = $request->only(['nome', 'cpf', 'celular']);
@@ -38,6 +17,23 @@ class PatientController extends Controller
                 'cpf' => $data['cpf'],
                 'cell' => $data['celular'],
             ])
+        );
+    }
+
+    public function update(int $id_paciente, Request $request)
+    {
+        $patient = Patient::findOrFail($id_paciente);
+
+        $data = $request->only(['nome', 'cpf', 'celular']);
+
+        if(isset($data['nome'])) $patient->name = $data['nome'];
+        if(isset($data['cpf'])) $patient->cpf = $data['cpf'];
+        if(isset($data['celular'])) $patient->cell = $data['celular'];
+
+        $patient->save();
+
+        return response()->json(
+            $patient->fresh()->toArray()
         );
     }
 }
