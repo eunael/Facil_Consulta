@@ -18,6 +18,7 @@
 - [ ] Criar rotas
     - [x] GET /cities?name=
     - [x] GET /medicos?name=
+    - [x] POST AUTH /medicos
     - [x] GET /cidades/{id_cidade}/medicos?name=
     - [ ] POST AUTH /pacientes
     - [ ] POST AUTH /pacientes/{id_paciente}

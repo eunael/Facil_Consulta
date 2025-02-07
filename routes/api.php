@@ -15,6 +15,7 @@ Route::get('/medicos', [DoctorController::class, 'doctors'])->name('api.doctors'
 
 Route::middleware([ApiValidateToken::class])->group(function() {
     Route::get('/cidades/{id_cidade}/medicos', [CityController::class, 'doctorsFromCity'])->name('api.cities.doctors');
+    Route::post('/medicos', [DoctorController::class, 'create'])->name('api.doctors.create');
 });
 
 

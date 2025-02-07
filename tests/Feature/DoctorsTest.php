@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Feature;
 
+use App\Models\City;
 use App\Models\Doctor;
 
 it('should list all doctors', function () {
@@ -58,4 +59,30 @@ it('should search doctors by name', function () {
         ->toBe(3)
         ->and($dataDr)
         ->toMatchArray(json_decode($doctors));
+});
+
+it('should create a new doctor', function () {
+    $city = City::factory()->create();
+
+    $this->post(route('api.doctors.create', absolute: true), ['nome' => fake()->name,'especialidade' => fake()->word,'cidade_id' => $city->id])
+        ->assertUnauthorized()
+        ->assertJson(['error' => 'Authorization token is not found']);
+
+    $token = getToken();
+
+    $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+        ->post(
+            route('api.doctors.create', absolute: true),
+            [
+                'nome' => fake()->name,
+                'especialidade' => fake()->word,
+                'cidade_id' => $city->id
+            ]
+        )
+            ->assertOk()
+            ->assertJsonStructure([
+                'name',
+                'specialty',
+                'city_id',
+            ]);
 });
