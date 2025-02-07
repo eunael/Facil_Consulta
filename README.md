@@ -13,8 +13,8 @@
 - [ ] Criar Models, Migrations, Seeders e Factories
     - [x] Cities
     - [x] Doctors
-    - [ ] Patients
-    - [ ] Consultations
+    - [x] Patients
+    - [x] Consultations
 - [ ] Criar rotas
     - [x] GET /cities?name=
     - [x] GET /medicos?name=
@@ -22,9 +22,9 @@
     - [x] GET /cidades/{id_cidade}/medicos?name=
     - [x] POST AUTH /pacientes
     - [x] POST AUTH /pacientes/{id_paciente}
-    - [ ] POST AUTH /medicos/consulta
-    - [ ] GET AUTH /medicos/{id_medico}/pacientes?apenas-agendadas=&name=
-- [ ] Criar controler (--invokable)
+    - [x] POST AUTH /medicos/consulta
+    - [x] GET AUTH /medicos/{id_medico}/pacientes?apenas-agendadas=&name=
+- Ajustar retorno das rotas para português
 
 # Comandos
 

@@ -14,5 +14,10 @@ class ConsultationSeeder extends Seeder
     public function run(): void
     {
         Consultation::factory(10)->create();
+        Consultation::factory()->count(3)->sequence(
+            ['date' => now()->subMonth()->toDateString()],
+            ['date' => now()->toDateString()],
+            ['date' => now()->addMonth()->toDateString()],
+        )->create(['doctor_id' => 1]);
     }
 }

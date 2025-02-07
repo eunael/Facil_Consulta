@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -38,6 +40,44 @@ class DoctorController extends Controller
                 'specialty' => $data['especialidade'],
                 'city_id' => $data['cidade_id'],
             ])
+        );
+    }
+
+    public function patients(int $id_medico)
+    {
+        $nameToSearch = request()->query('nome');
+        $onlyScheduleds = request()->query('apenas-agendadas') === 'true';
+
+        $doctor = Doctor::findOrFail($id_medico);
+
+        $patientsStatement = $doctor->patients()
+            ->when(
+                $onlyScheduleds,
+                fn($patients) => $patients->whereHas('consultations', function($q) {
+                    return $q->where('date', '>=', now()->toDateString());
+                })
+            );
+
+        if($nameToSearch !== null) {
+            $patientsStatement = $patientsStatement->cursor()
+                ->filter(
+                    fn($patient) =>
+                        str_contains(removeAccents(mb_strtolower($patient->name)), $nameToSearch)
+                );
+        }
+
+        $patients = $patientsStatement instanceof BelongsToMany ?
+            $patientsStatement->get():
+            $patientsStatement;
+
+        return response()->json(
+            $patients
+                ->sortBy(function ($patient) {
+                    $date = Carbon::parse($patient->pivot->date);
+                    return $date->getTimestamp();
+                })
+                    ->values()
+                    ->toArray()
         );
     }
 }

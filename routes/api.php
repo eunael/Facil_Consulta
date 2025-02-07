@@ -7,6 +7,7 @@ use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Middleware\ApiValidateToken;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::middleware([ApiValidateToken::class])->group(function() {
         Route::post('/', [DoctorController::class, 'create'])->name('api.doctors.create');
 
         Route::post('/consulta', [ConsultationController::class, 'create'])->name('api.doctor.consultation.create');
+
+        Route::get('/{id_medico}/pacientes', [DoctorController::class, 'patients'])->name('api.doctors.patients');
     });
 });
 

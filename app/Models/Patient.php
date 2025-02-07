@@ -13,4 +13,12 @@ class Patient extends Model
     use SoftDeletes;
 
     protected $fillable = ['name', 'cpf', 'cell'];
+
+    public function consultations() {
+        return $this->hasMany(Consultation::class);
+    }
+
+    public function doctors() {
+        return $this->belongsToMany(Doctor::class, Consultation::class)->withPivot('date');
+    }
 }

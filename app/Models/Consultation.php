@@ -12,5 +12,12 @@ class Consultation extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected function casts(): array
+    {
+        return [
+            'date' => 'date',
+        ];
+    }
+
     protected $fillable = [ 'doctor_id', 'patient_id', 'date',];
 }
