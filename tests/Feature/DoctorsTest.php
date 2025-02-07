@@ -30,6 +30,8 @@ it('should search doctors by name', function () {
     $nameToSearch = 'lil';
     $response = $this->get(route('api.doctors', ['nome' => $nameToSearch], true))
         ->assertOk();
+    $responseDr = $this->get(route('api.doctors', ['nome' => 'dr ' . $nameToSearch], true))
+        ->assertOk();
 
     $doctors = Doctor::query()
         ->when(
@@ -46,9 +48,14 @@ it('should search doctors by name', function () {
         ->toJson();
 
     $data = $response->getData();
-
     expect(count($data))
         ->toBe(3)
         ->and($data)
+        ->toMatchArray(json_decode($doctors));
+
+    $dataDr = $responseDr->getData();
+    expect(count($dataDr))
+        ->toBe(3)
+        ->and($dataDr)
         ->toMatchArray(json_decode($doctors));
 });

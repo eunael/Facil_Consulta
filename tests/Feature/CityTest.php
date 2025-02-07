@@ -97,16 +97,27 @@ it('should list all doctors from city and seach doctors by name', function () {
 
     Doctor::factory(3)->create();
 
+    $nameToSearch = 'lil';
     $response = $this->withHeaders([
         'Authorization' => 'Bearer ' . $token
     ])
-        ->get(route('api.cities.doctors', ['id_cidade' => $city->id, 'nome' => 'lil'], true));
+        ->get(route('api.cities.doctors', ['id_cidade' => $city->id, 'nome' => $nameToSearch], true));
+    $responseDr = $this->withHeaders([
+        'Authorization' => 'Bearer ' . $token
+    ])
+        ->get(route('api.cities.doctors', ['id_cidade' => $city->id, 'nome' => 'dr ' . $nameToSearch], true));
+
     $response->assertOk();
-
     $data = $response->getData();
-
     expect(count($data))
         ->toBe(2)
         ->and($data)
+        ->toMatchArray(json_decode($doctorsFromCitySearchByName->toJson()));
+
+    $responseDr->assertOk();
+    $dataDr = $responseDr->getData();
+    expect(count($dataDr))
+        ->toBe(2)
+        ->and($dataDr)
         ->toMatchArray(json_decode($doctorsFromCitySearchByName->toJson()));
 });
