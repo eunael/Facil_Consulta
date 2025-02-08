@@ -8,6 +8,9 @@ A documentação foi feita com ajuda do pacote scramble.
 
 # Comandos
 
+Execute essas comando para iniciar o projeto:
+
+```
 composer install
 
 cp .env.example .env
@@ -21,7 +24,12 @@ cp .env.example .env
 ./vendor/bin/sail artisan jwt:secret
 
 ./vendor/bin/sail artisan migrate --seed
+```
 
+### Se quiser executar os testes
+
+```
 touch database/database.sqlite
 
 ./vendor/bin/sail artisan test
+```
