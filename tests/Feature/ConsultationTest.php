@@ -2,7 +2,6 @@
 namespace Tests\Feature;
 
 use App\Models\Consultation;
-use App\Models\Patient;
 
 it('should create a new consultation', function () {
     $consultation = Consultation::factory()->make();
@@ -20,9 +19,9 @@ it('should create a new consultation', function () {
         )
             ->assertOk()
             ->assertJsonStructure([
-                'medico_id',
-                'paciente_id',
-                'data',
+                'doctor_id',
+                'patient_id',
+                'date',
             ]);
 
     $this->assertDatabaseHas(Consultation::class, [

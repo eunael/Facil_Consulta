@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Doctor;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-    public function cities()
+    public function cities(): JsonResponse
     {
         $nameToSearch = mb_strtolower(request()->query('nome'));
 
@@ -29,7 +31,7 @@ class CityController extends Controller
         return response()->json($cities);
     }
 
-    public function doctorsFromCity(int $id_cidade)
+    public function doctorsFromCity(int $id_cidade): JsonResponse
     {
         $nameToSearch = removeDrDra(mb_strtolower(request()->query('nome')));
 

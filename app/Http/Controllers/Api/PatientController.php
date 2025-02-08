@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Patient;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request): JsonResponse
     {
         $data = $request->only(['nome', 'cpf', 'celular']);
 
@@ -20,7 +22,7 @@ class PatientController extends Controller
         );
     }
 
-    public function update(int $id_paciente, Request $request)
+    public function update(int $id_paciente, Request $request): JsonResponse
     {
         $patient = Patient::findOrFail($id_paciente);
 

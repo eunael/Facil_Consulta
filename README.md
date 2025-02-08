@@ -10,12 +10,12 @@
     - [x] Criar rota /login
     - [x] Criar rota /user
     - [x] Criar middleware para validar o token
-- [ ] Criar Models, Migrations, Seeders e Factories
+- [x] Criar Models, Migrations, Seeders e Factories
     - [x] Cities
     - [x] Doctors
     - [x] Patients
     - [x] Consultations
-- [ ] Criar rotas
+- [x] Criar rotas
     - [x] GET /cities?name=
     - [x] GET /medicos?name=
     - [x] POST AUTH /medicos
@@ -24,7 +24,6 @@
     - [x] POST AUTH /pacientes/{id_paciente}
     - [x] POST AUTH /medicos/consulta
     - [x] GET AUTH /medicos/{id_medico}/pacientes?apenas-agendadas=&name=
-- Ajustar retorno das rotas para português
 
 # Comandos
 

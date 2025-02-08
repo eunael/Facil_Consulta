@@ -2,13 +2,11 @@
 
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\ConsultationController;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\PatientController;
+use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\ConsultationController;
+use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\PatientController;
 use App\Http\Middleware\ApiValidateToken;
-use App\Models\Doctor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', LoginController::class)->name('api.login');

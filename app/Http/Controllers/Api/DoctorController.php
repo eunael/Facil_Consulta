@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
-    public function doctors()
+    public function doctors(): JsonResponse
     {
         $nameToSearch = removeDrDra(mb_strtolower(request()->query('nome')));
 
@@ -30,7 +32,7 @@ class DoctorController extends Controller
         return response()->json($doctors);
     }
 
-    public function create(Request $request)
+    public function create(Request $request): JsonResponse
     {
         $data = $request->only(['nome', 'especialidade', 'cidade_id']);
 
@@ -43,7 +45,7 @@ class DoctorController extends Controller
         );
     }
 
-    public function patients(int $id_medico)
+    public function patients(int $id_medico): JsonResponse
     {
         $nameToSearch = request()->query('nome');
         $onlyScheduleds = request()->query('apenas-agendadas') === 'true';

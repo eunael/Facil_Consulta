@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(): JsonResponse
     {
 
         return response()->json(['user' => Auth::user()]);
