@@ -8,7 +8,7 @@ A documentação foi feita com ajuda do pacote scramble.
 
 # Comandos
 
-Execute essas comando para iniciar o projeto:
+Execute estes comando para iniciar o projeto:
 
 ```
 composer install
